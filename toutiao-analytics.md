@@ -64,79 +64,81 @@
 	- 在页面加载时发送页面的PV事件
 	
 ###设置步骤 
-1. 在dom元素上添加属性
+#### 在dom元素上添加属性
 	
+
 	目前支持的属性有：data-view, data-click。data-view是当前页面的PV统计，data-click是页面中点击事件的统计
 	注: 一个页面有且只有一个data-view属性，可以有多个data-click属性
 		
-	data-view参数列表：
+data-view参数列表：
 
-	参数     | 值        | 含义      | 是否必须
-	:--------: | :--------: | :--------: | :--------:
-	page     | 用户自定义	 | 页面的名称 | 是	
-	etype     | pv	 | view| 是	
-	option     | 用户自定义扩展参数	 | 可选参数 | 否
+参数     | 值        | 含义      | 是否必须
+:--------: | :--------: | :--------: | :--------:
+page     | 用户自定义	 | 页面的名称 | 是	
+etype     | pv	 | view| 是	
+option     | 用户自定义扩展参数	 | 可选参数 | 否
 	
-		使用示例
-		<section data-view="{"page":"index","etype":"view","option":{"a":"http://m.toutiao.com","b":2}}">
-		<!-- 您页面的代码 -->
-		</section>	
+	使用示例
+	<section data-view="{"page":"index","etype":"view","option":{"a":"http://m.toutiao.com","b":2}}">
+	<!-- 您页面的代码 -->
+	</section>	
 	
-	---
-	data-click参数列表：
-	
-	参数     | 值        | 含义      | 是否必须
-	:--------: | :-------- | :--------: | :--------:
-	page     | 用户自定义	 | 页面的名称 | 是	
-	etype     | click:点击 <br> dbclk: 双击 <br> zoom: 放大缩小 <br> scroll: 滑动 | view| 是
-	concrete     | search: 搜索 <br> register: 注册 <br> download: 下载 <br> login: 登陆 <br>等| 可选参数 | 否
-	option     | 用户自定义扩展参数 | 其他可选参数	| 否
+---
 
-		使用示例
-		<div data-click="{"page":"index","etype":"view",concrete:"search","option":{"a":"http://m.toutiao.com","b":2}}">
-		</div>
+data-click参数列表：
+	
+参数     | 值        | 含义      | 是否必须
+:--------: | :-------- | :--------: | :--------:
+page     | 用户自定义	 | 页面的名称 | 是	
+etype     | click:点击 <br> dbclk: 双击 <br> zoom: 放大缩小 <br> scroll: 滑动 | view| 是
+concrete     | search: 搜索 <br> register: 注册 <br> download: 下载 <br> login: 登陆 <br>等| 可选参数 | 否
+option     | 用户自定义扩展参数 | 其他可选参数	| 否
 
-2. 在js代码中添加
+	使用示例
+	<div data-click="{"page":"index","etype":"view",concrete:"search","option":{"a":"http://m.toutiao.com","b":2}}">
+	</div>
+
+#### 在js代码中添加
 			
-	* _taq.push
+1) _taq.push
 	
-			在合适的位置调用如下跟踪代码:
+	在合适的位置调用如下跟踪代码:
 		
-			_taq.push(['trackevent', page, etype, concrete, target, option]);
-			page: 页面名称，用户自定义值。该项必选。
-			etype: 事件类型，值有pv,click,dbclk,zoom,scroll。其中pv指：通过js代码发送的页面展现，替代data-view的方式。该项必选。
-			concrete: 具体事件，值有search,register,login, download等由用户自定义。该项必选。
-			target: 触发事件的dom节点对象。除了etype是pv以外的所有类型都需要传递。
-			option: 可选参数。值可以为字符串，如:"tn=1&pn=2",也可以为对象,如:{tn:1,pn:2}。该项可选。
+	_taq.push(['trackevent', page, etype, concrete, target, option]);
+	page: 页面名称，用户自定义值。该项必选。
+	etype: 事件类型，值有pv,click,dbclk,zoom,scroll。其中pv指：通过js代码发送的页面展现，替代data-view的方式。该项必选。
+	concrete: 具体事件，值有search,register,login, download等由用户自定义。该项必选。
+	target: 触发事件的dom节点对象。除了etype是pv以外的所有类型都需要传递。
+	option: 可选参数。值可以为字符串，如:"tn=1&pn=2",也可以为对象,如:{tn:1,pn:2}。该项可选。
 			
-		---
+---
 	
-			使用示例：
+	使用示例：
 		
-			_taq.push(['trackevent', 'index', 'pv', 'login']);
-			_taq.push(['trackevent', 'index', 'click', 'login', '{"tn":"aa","pn":"bb","from":"http%3A%2F%2Ftest.com"}']);
-			_taq.push(['trackevent', 'index', 'click', 'login', $target,{"tn":"aa","pn":"bb","from":"http%3A%2F%2Ftest.com"}]);
+	_taq.push(['trackevent', 'index', 'pv', 'login']);
+	_taq.push(['trackevent', 'index', 'click', 'login', '{"tn":"aa","pn":"bb","from":"http%3A%2F%2Ftest.com"}']);
+	_taq.push(['trackevent', 'index', 'click', 'login', $target,{"tn":"aa","pn":"bb","from":"http%3A%2F%2Ftest.com"}]);
 		
-	* ta.send
+2) ta.send
 			
-			注：使用send方法需要写到window.onload事件里
-			参数定义见上面的跟踪代码,send方法在全局对象ta上
+	注：使用send方法需要写到window.onload事件里
+	参数定义见上面的跟踪代码,send方法在全局对象ta上
 			
-		---
+---
 		
-			使用示例：
+	使用示例：
 			
-			var data = {
-				page: "index",
-    			etype: "click",
-    			concrete: "login",
-    			target: target,//除了etype是pv的其他事件都需要发送target
-    			option: {
-        			tn: 1,
-        			pn: 2
-    			}
-			}
+	var data = {
+		page: "index",
+    	etype: "click",
+    	concrete: "login",
+    	target: target,//除了etype是pv的其他事件都需要发送target
+    	option: {
+        	tn: 1,
+        	pn: 2
+    	}
+	}
  
-			window.onload = function(){
-    			ta.send(data);
-    		} 
+	window.onload = function(){
+    	ta.send(data);
+    } 
