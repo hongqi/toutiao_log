@@ -1,4 +1,5 @@
-# toutiao_analytics
+# 头条落地页日志收集说明文档-- toutiao-analytics.js
+
 
 ##1.代码部署
 
