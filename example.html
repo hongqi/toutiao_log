@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>example</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui">
+<!-- 您网站的样式表/脚本 -->
+<script type="text/javascript">
+    var _taq = _taq || [];
+    _taq.push(['debug'])
+    _taq.push(['trackinit', 'mobile', 'wap']);//手机客户端
+    (function() {
+     var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true;
+     ta.src = document.location.protocol + '//' + 's0.pstatp.com/adstatic/resource/landing_log/dist/1.0.3/static/js/toutiao-analytics.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ta, s);
+     })();
+
+    _taq.push(['trackevent', 'index', 'pv', 'login'])
+    _taq.push(['trackevent', 'search', 'pv', 'show'])
+    var func = function(){
+        ta.send({page:'detail', etype:'pv', concrete:'search'})
+    }
+    window.onload = func;
+</script>
+</head>
+<body data-view="{"page":"index","etype":"view"}">
+<!-- 您网站的页面代码 -->
+    <div data-click="{"page":"index","etype":"view",concrete:"search"}">hello toutiao-analytics</div>
+</body>
+</html>

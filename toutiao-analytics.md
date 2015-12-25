@@ -13,7 +13,7 @@
 		//app: app的类型，值有web,wap。该项必选。
 		(function() {
     		var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true;
-    		ta.src = document.location.protocol + '//' + 's0.pstatp.com/adstatic/resource/landing_page_log/dist/1.0.1/toutiao-analytics.js';
+    		ta.src = document.location.protocol + '//' + 's0.pstatp.com/adstatic/resource/landing_page_log/dist/1.0.3/toutiao-analytics.js';
     		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ta, s);
 		})();
 	</script>
@@ -33,7 +33,7 @@
         	_taq.push(['trackinit', 'mobile', 'wap']);//手机客户端
         	(function() {
             	var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true;
-            	ta.src = document.location.protocol + '//' + 's0.pstatp.com/adstatic/resource/toutiao_log/dist/1.0.1/toutiao-analytics.js';
+            	ta.src = document.location.protocol + '//' + 's0.pstatp.com/adstatic/resource/toutiao_log/dist/1.0.3/toutiao-analytics.js';
             	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ta, s);
         	})();
     	</script>
@@ -50,7 +50,7 @@
 	3. 如需在JS文件中调用统计分析代码，请直接去掉以下代码首尾的<script type="text/javascript">与</script>后，放入JS文件中即可。
 
 ###注意
- 	代码中会有1.0.1的版本号，如果统计代码有大的改动，会通知大家更新为新的版本。这个版本号不会频繁变动的。
+ 	代码中会有1.0.3的版本号，如果统计代码有大的改动，会通知大家更新为新的版本。这个版本号不会频繁变动的。
  
 ##2.事件跟踪
 
@@ -135,10 +135,16 @@ option     | 用户自定义扩展参数 | 其他可选参数	| 否
     	target: target,//除了etype是pv的其他事件都需要发送target
     	option: {
         	tn: 1,
-        	pn: 2
+        	pn: 2Ftest
     	}
 	}
  
 	window.onload = function(){
     	ta.send(data);
-    } 
+    }
+    
+ 
+##3. 使用示例
+
+	访问线上地址：http://s.pstatp.com/site/tt_mfsroot/md/ad/example.html
+	查看使用示例，其中添加_taq.push(['debug'])代码可以查看调试信息
